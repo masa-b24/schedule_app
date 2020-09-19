@@ -1,0 +1,19 @@
+.row
+  aside.col-md-4
+    section.user_info
+      
+      = current_user.name
+    section.page_transition
+      .btn-group-vertical
+        = link_to 'タスク追加', "#", class: 'btn btn-primary'
+        = link_to 'マイページ', @user, class: 'btn btn-primary'
+        = link_to 'カレンダー', "#", class: 'btn btn-primary'
+
+  .col-md-8
+    h1 本日のスケジュール
+    table.table.table-hover
+      thead.thead-default
+        tr
+          th タイトル
+          th 説明
+          th 時間
