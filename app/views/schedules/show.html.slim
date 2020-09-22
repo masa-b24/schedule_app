@@ -1,5 +1,5 @@
 .row
-  aside.col-md-4
+  aside.col-md-3
     section.user_info
       h4 = current_user.name
     section.page_transition
@@ -7,15 +7,17 @@
         = link_to 'タスク追加', "#", class: 'btn btn-primary mb-3 btn-lg'
         = link_to 'マイページ', schedules_path, class: 'btn btn-primary mb-3 btn-lg'
         = link_to 'カレンダー', "#", class: 'btn btn-primary mb-3 btn-lg'
-  .col-md-8
+  .col-md-9
     .content-area
-      h1 本日のスケジュール
+      h1.inline 本日のスケジュール
+      .content-right
+        = paginate @schedules
       table.table.table-hover
         thead.thead-default
           tr
-            th タイトル
-            th 時間
-            th
+            th.col-xs-4 タイトル
+            th.col-xs-4 時間
+            th.col-xs-4
         tbody
           -@schedules.each do |schedule|
             tr
@@ -25,13 +27,15 @@
                 = link_to '編集', "#", class: 'btn btn-primary mr-3'
                 = link_to '削除', "#", method: :delete, data: { confirm: "タスク「#{schedule.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
     .content-area
-      h1 備忘録
+      h1.inline 備忘録
+      .content-right
+        = paginate @memos
       table.table.table-hover
         thead.thead-default
           tr
-            th タイトル
-            th 期限
-            th
+            th.col-xs-4 タイトル
+            th.col-xs-4 期限
+            th.col-xs-4
         tbody
           -@memos.each do |memo|
             tr
