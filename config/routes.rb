@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #end
 
   resource :schedules, only: [:show]
+  resources :tasks
   
   root to: 'static_pages#home'
   

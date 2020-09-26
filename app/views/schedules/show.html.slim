@@ -4,7 +4,7 @@
       h4 = current_user.name
     section.page_transition
       .btn-group-vertical
-        = link_to 'タスク追加', "#", class: 'btn btn-primary mb-3 btn-lg'
+        = link_to 'タスク追加', new_task_path, class: 'btn btn-primary mb-3 btn-lg'
         = link_to 'マイページ', schedules_path, class: 'btn btn-primary mb-3 btn-lg'
         = link_to 'カレンダー', "#", class: 'btn btn-primary mb-3 btn-lg'
   .col-md-9
@@ -22,7 +22,7 @@
           -@schedules.each do |schedule|
             tr
               td= schedule.title
-              td= schedule.scheduled_time
+              td= schedule.start_scheduled_time
               td
                 = link_to '編集', "#", class: 'btn btn-primary mr-3'
                 = link_to '削除', "#", method: :delete, data: { confirm: "タスク「#{schedule.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
@@ -40,7 +40,7 @@
           -@memos.each do |memo|
             tr
               td= memo.title
-              td= memo.scheduled_time
+              td= memo.end_scheduled_time
               td
                 = link_to '編集', "#", class: 'btn btn-primary mr-3'
                 = link_to '削除', "#", method: :delete, data: { confirm: "タスク「#{memo.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
