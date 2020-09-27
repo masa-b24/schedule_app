@@ -23,10 +23,10 @@
             tr
               td= link_to schedule.title, task_path(schedule)
               td
-                = schedule.start_scheduled_time
+                = l schedule.start_scheduled_time, format: :time
                 span
                   | ~
-                = schedule.end_scheduled_time
+                = l schedule.end_scheduled_time, format: :time
               td
                 = link_to '編集', edit_task_path(schedule), class: 'btn btn-primary mr-3'
                 = link_to '削除', task_path(schedule), method: :delete, data: { confirm: "タスク「#{schedule.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
@@ -44,7 +44,7 @@
           -@memos.each do |memo|
             tr
               td= link_to memo.title, task_path(memo)
-              td= memo.end_scheduled_time
+              td= l memo.due_date, format: :date
               td
                 = link_to '編集', edit_task_path(memo), class: 'btn btn-primary mr-3'
                 = link_to '削除', task_path(memo), method: :delete, data: { confirm: "タスク「#{memo.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
