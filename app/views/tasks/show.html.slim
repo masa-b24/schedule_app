@@ -1,2 +1,24 @@
-h1 Tasks#show
-p Find me in app/views/tasks/show.html.slim
+h1 タスクの詳細
+
+.nav.justify-content-end
+ = link_to '一覧', schedules_path, class: 'nav-link'
+table.table.table-hover
+  tbody
+    tr
+      th  タイトル
+      td= @task.title
+    tr
+      th  説明
+      td= simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: "div")
+    tr
+      th  日時
+      td= @task.due_date
+    tr
+      th  時間（期間）
+      td
+        = @task.start_scheduled_time
+        span
+          |~
+        = @task.end_scheduled_time
+
+      

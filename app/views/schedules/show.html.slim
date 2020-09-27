@@ -1,7 +1,7 @@
 .row
   aside.col-md-3
     section.user_info
-      h4 = current_user.name
+      h5 = current_user.name
     section.page_transition
       .btn-group-vertical
         = link_to 'タスク追加', new_task_path, class: 'btn btn-primary mb-3 btn-lg'
@@ -21,8 +21,12 @@
         tbody
           -@schedules.each do |schedule|
             tr
-              td= schedule.title
-              td= schedule.start_scheduled_time
+              td= link_to schedule.title, task_path(schedule)
+              td
+                = schedule.start_scheduled_time
+                span
+                  | ~
+                = schedule.end_scheduled_time
               td
                 = link_to '編集', edit_task_path(schedule), class: 'btn btn-primary mr-3'
                 = link_to '削除', task_path(schedule), method: :delete, data: { confirm: "タスク「#{schedule.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
@@ -39,7 +43,7 @@
         tbody
           -@memos.each do |memo|
             tr
-              td= memo.title
+              td= link_to memo.title, task_path(memo)
               td= memo.end_scheduled_time
               td
                 = link_to '編集', edit_task_path(memo), class: 'btn btn-primary mr-3'
