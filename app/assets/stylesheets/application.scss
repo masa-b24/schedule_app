@@ -8,14 +8,14 @@ html {
 }
 
 body {
-  min-height: 100vh;
+  margin: 0;
+  height: 100%;
   position: relative;
+  padding-bottom: 112px;
 }
 
-footer {
+header {
   width: 100%;
-  position: absolute;
-  bottom: 0;
 }
 
 .center {
@@ -31,7 +31,8 @@ footer {
 main {
   height: 100%;
   width: 100%;
-
+  background-color : silver;
+  
 }
 
 .button {
@@ -43,14 +44,20 @@ main {
 
 /* mypage */
 .inline {
-  display: inline-block;
+  float: left;
 }
 
-.pagination {
-  justify-content: flex-end;
-}
 
 .content-right {
-  display: inline-block;
+  float: right;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
+.container-fluid {
+  height: 100%;
+}
+
+table {
+  height: 300px;
+}

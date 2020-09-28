@@ -1,5 +1,5 @@
-.row
-  aside.col-md-3
+.row.h-100
+  aside.col-md-3.h-100
     section.user_info
       h5 = current_user.name
     section.page_transition
@@ -7,44 +7,44 @@
         = link_to 'タスク追加', new_task_path, class: 'btn btn-primary mb-3 btn-lg'
         = link_to 'マイページ', schedules_path, class: 'btn btn-primary mb-3 btn-lg'
         = link_to 'カレンダー', "#", class: 'btn btn-primary mb-3 btn-lg'
-  .col-md-9
-    .content-area
+  .col-md-7.h-100
+    .content-area.h-50
       h1.inline 本日のスケジュール
       .content-right
         = paginate @schedules
       table.table.table-hover
         thead.thead-default
           tr
-            th.col-xs-4 タイトル
-            th.col-xs-4 時間
-            th.col-xs-4
+            th style="width:35%" タイトル
+            th style="width:35%" 時間
+            th style="width:30%"
         tbody
           -@schedules.each do |schedule|
             tr
-              td= link_to schedule.title, task_path(schedule)
-              td
+              td.align-middle= link_to schedule.title, task_path(schedule)
+              td.align-middle
                 = l schedule.start_scheduled_time, format: :time
                 span
                   | ~
                 = l schedule.end_scheduled_time, format: :time
-              td
+              td.align-middle.text-right
                 = link_to '編集', edit_task_path(schedule), class: 'btn btn-primary mr-3'
                 = link_to '削除', task_path(schedule), method: :delete, data: { confirm: "タスク「#{schedule.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
-    .content-area
+    .content-area.h-50
       h1.inline 備忘録
       .content-right
         = paginate @memos
       table.table.table-hover
         thead.thead-default
           tr
-            th.col-xs-4 タイトル
-            th.col-xs-4 期限
-            th.col-xs-4
+            th style="width:35%" タイトル
+            th style="width:35%" 期限
+            th style="width:30%"
         tbody
           -@memos.each do |memo|
             tr
-              td= link_to memo.title, task_path(memo)
-              td= l memo.due_date, format: :date
-              td
+              td.align-middle= link_to memo.title, task_path(memo)
+              td.align-middle= l memo.due_date, format: :date
+              td.align-middle.text-right
                 = link_to '編集', edit_task_path(memo), class: 'btn btn-primary mr-3'
                 = link_to '削除', task_path(memo), method: :delete, data: { confirm: "タスク「#{memo.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

@@ -18,10 +18,10 @@ html
           - else
             li.nav-item= link_to 'ログイン', new_user_session_path, class: 'nav-link'
     main
-      .container-fluid
+      .container-fluid.h-100
         - if flash.notice.present?
-          .alert.alert-success=flash.notice
+          .alert.alert-success.mb-0=flash.notice
         = yield
-    footer
+    footer.fixed-bottom
       .app-title.navbar.navbar-expand-md.navbar-dark.bg-primary
         = link_to 'スケジュール管理アプリ', root_path, class: 'navbar-brand' 
