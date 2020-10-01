@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
+
   require'date'
 
   def show
