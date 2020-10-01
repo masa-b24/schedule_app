@@ -4,8 +4,7 @@
       - if current_user.image.attached?
         = image_tag current_user.image.variant(resize_to_fill: [150, 150])
       - else
-        - current_user.image = 'default.png'
-        = image_tag current_user.image
+        = image_tag 'default.png'
 
       h5 = current_user.name
       = link_to 'ユーザー情報の編集', edit_user_registration_path
