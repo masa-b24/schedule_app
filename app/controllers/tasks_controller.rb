@@ -18,7 +18,7 @@ class TasksController < ApplicationController
   def create
     task = current_user.tasks.build(task_params)
     if task.save
-      redirect_to schedules_path
+      redirect_to schedules_path, notice: "タスク「#{task.title}」を作成されました。"
     else
       render :new
     end

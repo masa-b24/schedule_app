@@ -1,6 +1,16 @@
 ---
 ja:
   activerecord:
+    models:
+      task: タスク
+    attributes:
+      task:
+        id: ID
+        title: タイトル
+        description: 内容
+        start_scheduled_time:  開始時間
+        end_scheduled_time: 終了時間
+        due_date: 日にち
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
