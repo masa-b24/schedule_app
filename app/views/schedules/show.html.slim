@@ -29,10 +29,10 @@
             tr
               td.align-middle= link_to schedule.title, task_path(schedule)
               td.align-middle
-                = l schedule.start_scheduled_time, format: :time
+                = l schedule.start_scheduled_time, format: :time, default: 9
                 span
                   | ~
-                = l schedule.end_scheduled_time, format: :time
+                = l schedule.end_scheduled_time, format: :time, default: 0
               td.align-middle.text-right
                 = link_to '編集', edit_task_path(schedule), class: 'btn btn-primary mr-3'
                 = link_to '削除', task_path(schedule), method: :delete, data: { confirm: "タスク「#{schedule.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

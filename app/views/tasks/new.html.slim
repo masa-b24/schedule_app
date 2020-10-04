@@ -16,15 +16,15 @@ h1 タスクの追加
     = f.text_area :description, rows: 5, class: 'form-control', id: 'task_description'
 
   .form-group
-    = f.label :due_date, "期間"
+    = f.label :due_date, "日時"
     .form-inline
-      = f.date_select :due_date, {include_blank: true, discard_year: true, use_month_numbers: true}, id: 'task_due_date'
+      = f.date_select :due_date, {default: Date.today, use_month_numbers: true}, id: 'task_due_date'
   
   .form-group
     = f.label :start_scheduled_time, "時間"
     .form-inline
-      = f.time_select :start_scheduled_time, {include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15}, id: 'task_start_scheduled_time'
+      = f.datetime_select :start_scheduled_time, {include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15, discard_day: true, discard_month: true, discard_year: true}, id: 'task_start_scheduled_time'
       h7 ~
-      = f.time_select :end_scheduled_time, {include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15}, id: 'task_end_scheduled_time'
-  
+      = f.datetime_select :end_scheduled_time, {include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15, discard_day: true, discard_month: true, discard_year: true}, id: 'task_end_scheduled_time'
+      
   = f.submit nil, class: 'btn btn-primary'

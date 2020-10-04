@@ -17,5 +17,6 @@ module ScheduleApp
 
     config.time_zone = 'Asia/Tokyo'
     config.i18n.default_locale = :ja
+    config.active_record.default_timezone = :local
   end
 end

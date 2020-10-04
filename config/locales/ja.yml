@@ -117,6 +117,9 @@ ja:
       day: 日
       month: 月
       year: 年
+    format:
+      time: "%H:%M"
+
   errors:
     format: "%{attribute}%{message}"
     messages:
