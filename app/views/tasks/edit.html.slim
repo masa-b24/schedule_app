@@ -1,30 +1,31 @@
 h1 タスクの編集
 
 = form_with model: @task, local: true do |f|
-  .form-check-inline
-    = f.radio_button :klass, :schedule, checked: true
-    = f.label :schedule, "スケジュール"
-  .form-check-inline
-    = f.radio_button :klass, :memo
-    = f.label :memo, "備忘録"
+  div data-controller="display"
+    .form-check-inline
+      = f.radio_button :klass, :schedule, checked: true, 'data-action': 'input->display#schedule'
+      = f.label :schedule, "スケジュール"
+    .form-check-inline
+      = f.radio_button :klass, :memo, 'data-action': 'input->display#memo'
+      = f.label :memo, "備忘録"
 
-  .form-group
-    = f.label :title
-    = f.text_field :title, class: 'form-control', id: 'task_title'
-  .form-group
-    = f.label :description
-    = f.text_area :description, rows: 5, class: 'form-control', id: 'task_description'
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control', id: 'task_title'
+    .form-group
+      = f.label :description
+      = f.text_area :description, rows: 5, class: 'form-control', id: 'task_description'
 
-  .form-group
-    = f.label :due_date, "期間"
-    .form-inline
-      = f.date_select :due_date, {include_blank: true, discard_year: true, use_month_numbers: true}, id: 'task_due_date'
-  
-  .form-group
-    = f.label :start_scheduled_time, "時間"
-    .form-inline
-      = f.time_select :start_scheduled_time, {include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15}, id: 'task_start_scheduled_time'
-      h7 ~
-      = f.time_select :end_scheduled_time, {include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15}, id: 'task_end_scheduled_time'
-  
-  = f.submit nil, class: 'btn btn-primary'
+    .form-group
+      = f.label :due_date, "期間"
+      .form-inline
+        = f.date_select :due_date, {include_blank: true, discard_year: true, use_month_numbers: true}, id: 'task_due_date'
+    
+    .form-group.scheduled_timeBox data-target='display.slide' 
+      = f.label :start_scheduled_time, "時間"
+      .form-inline
+        = f.time_select :start_scheduled_time, {include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15}, id: 'task_start_scheduled_time'
+        h7 ~
+        = f.time_select :end_scheduled_time, {include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15}, id: 'task_end_scheduled_time'
+    
+    = f.submit nil, class: 'btn btn-primary'
