@@ -1,5 +1,5 @@
-.row.h-100
-  aside.col-md-3.h-100
+.row
+  aside.col-md-3
     section.user_info
       - if current_user.image.attached?
         = image_tag current_user.image.variant(resize_to_fill: [150, 150])
@@ -13,11 +13,9 @@
         = link_to 'タスク追加', new_task_path, class: 'btn btn-primary mb-3 btn-lg'
         = link_to 'マイページ', schedules_path, class: 'btn btn-primary mb-3 btn-lg'
         = link_to 'カレンダー', "#", class: 'btn btn-primary mb-3 btn-lg'
-  .col-md-7.h-100
-    .content-area.h-50
-      h1.inline 本日のスケジュール
-      .content-right
-        = paginate @schedules
+  .col-md-9
+    .content-area
+      h2 本日のスケジュール
       table.table.table-hover
         thead.thead-default
           tr
@@ -29,17 +27,18 @@
             tr
               td.align-middle= link_to schedule.title, task_path(schedule)
               td.align-middle
-                = l schedule.start_scheduled_time, format: :time, default: 9
+                = l schedule.start_scheduled_time, format: :time
                 span
                   | ~
-                = l schedule.end_scheduled_time, format: :time, default: 0
+                = l schedule.end_scheduled_time, format: :time
               td.align-middle.text-right
                 = link_to '編集', edit_task_path(schedule), class: 'btn btn-primary mr-3'
                 = link_to '削除', task_path(schedule), method: :delete, data: { confirm: "タスク「#{schedule.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
-    .content-area.h-50
-      h1.inline 備忘録
-      .content-right
-        = paginate @memos
+      .clearfix
+        .float-right
+          = paginate @schedules
+    .content-area
+      h2 備忘録
       table.table.table-hover
         thead.thead-default
           tr
@@ -54,3 +53,6 @@
               td.align-middle.text-right
                 = link_to '編集', edit_task_path(memo), class: 'btn btn-primary mr-3'
                 = link_to '削除', task_path(memo), method: :delete, data: { confirm: "タスク「#{memo.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+      .clearfix
+        .float-right
+          = paginate @memos

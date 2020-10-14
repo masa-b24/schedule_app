@@ -125,11 +125,11 @@ ja:
       day: 日
       month: 月
       year: 年
-    format:
-      time: "%H:%M"
+    formats:
+      time: "%-H:%M"
 
   errors:
-    format: "%{attribute}%{message}"
+    format: "※%{attribute}%{message}"
     messages:
       accepted: を受諾してください
       blank: を入力してください
@@ -227,5 +227,5 @@ ja:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
-      time: "%H:%M"
+      time: "%-H:%M"
     pm: 午後

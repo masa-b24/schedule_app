@@ -30,7 +30,6 @@ export default class extends Controller {
   }
 
   toggleTimebox(event) {
-    console.log(event.target)
     if (event.target.value == 'schedule') {
       this.slideTarget.setAttribute('style', 'display:block')
     } else {

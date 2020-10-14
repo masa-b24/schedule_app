@@ -1,4 +1,4 @@
-= form_with model: @task, local: true do |f|
+= form_with model: task, local: true do |f|
   div data-controller="display"
     = f.label :schedule do
       = f.radio_button :klass, :schedule, checked: true, 'data-action': 'change->display#toggleTimebox', id: :task_schedule
@@ -9,10 +9,18 @@
 
     .form-group
       = f.label :title
-      = f.text_field :title, class: 'form-control', id: 'task_title'
+      = f.text_field :title, class: 'form-control'
+      - if task.errors.include?(:title)
+        p.error = task.errors.full_messages_for(:title)&.first
+
+      /- if task.errors[:title].present?
+        p.error = task.errors[:title]&.first
+
     .form-group
       = f.label :description
       = f.text_area :description, rows: 5, class: 'form-control', id: 'task_description'
+      - if task.errors.include?(:description)
+        p.error = task.errors.full_messages_for(:description)&.first
 
     .form-group
       = f.label :due_date, "日時"

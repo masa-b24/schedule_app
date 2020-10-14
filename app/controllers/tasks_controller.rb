@@ -16,18 +16,21 @@ class TasksController < ApplicationController
   end
 
   def create
-    task = current_user.tasks.build(task_params)
-    if task.save
-      redirect_to schedules_path, notice: "タスク「#{task.title}」を作成されました。"
+    @task = current_user.tasks.build(task_params)
+    if @task.save
+      redirect_to schedules_path, notice: "タスク「#{@task.title}」を作成されました。"
     else
       render :new
     end
   end
 
   def update
-    task = Task.find(params[:id])
-    task.update(task_params)
-    redirect_to schedules_path, notice: "タスク「#{task.title}」を編集されました。"
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to schedules_path, notice: "タスク「#{@task.title}」を編集されました。"
+    else
+      render :edit
+    end
   end
 
   def destroy
