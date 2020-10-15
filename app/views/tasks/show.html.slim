@@ -1,24 +1,30 @@
-h1 タスクの詳細
+.row
+  .col-md-8.offset-md-2
+    h2.text-center タスクの詳細
 
-.nav.justify-content-end
- = link_to '一覧', schedules_path, class: 'nav-link'
-table.table.table-hover
-  tbody
-    tr
-      th  タイトル
-      td= @task.title
-    tr
-      th  説明
-      td= simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: "div")
-    tr
-      th  日時
-      td= l @task.due_date, format: :date
-    tr
-      th  時間（期間）
-      td
-        = l @task.start_scheduled_time, format: :time
-        span
-          |~
-        = l @task.end_scheduled_time, format: :time
+    .nav.justify-content-end
+      = link_to '一覧', schedules_path, class: 'nav-link'
+    table.table.table-hover
+      tbody
+        tr
+          th style="width:20%"  タイトル
+          td style="width:35%"= @task.title
+        tr
+          th  説明
+          td= simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: "div")
+        tr
+          th  日時
+          td= l @task.due_date, format: :date
+        tr
+          th  時間（期間）
+          td
+            = l @task.start_scheduled_time, format: :time
+            span
+              |~
+            = l @task.end_scheduled_time, format: :time
+
+    = link_to '編集', edit_task_path, class: 'btn btn-primary mr-3'
+    = link_to '削除', @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+
 
       

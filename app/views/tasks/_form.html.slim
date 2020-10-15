@@ -1,37 +1,37 @@
-= form_with model: task, local: true do |f|
-  div data-controller="display"
-    = f.label :schedule do
-      = f.radio_button :klass, :schedule, checked: true, 'data-action': 'change->display#toggleTimebox', id: :task_schedule
-      span.ml-1 スケジュール
-    = f.label :memo, class: 'ml-2' do
-      = f.radio_button :klass, :memo, 'data-action': 'change->display#toggleTimebox', id: :task_memo, data: { target: 'display.memo' }
-      span.ml-1 備忘録
+    = form_with model: task, local: true do |f|
+      div data-controller="display"
+        = f.label :schedule do
+          = f.radio_button :klass, :schedule, checked: true, 'data-action': 'change->display#toggleTimebox', id: :task_schedule
+          span.ml-1 スケジュール
+        = f.label :memo, class: 'ml-2' do
+          = f.radio_button :klass, :memo, 'data-action': 'change->display#toggleTimebox', id: :task_memo, data: { target: 'display.memo' }
+          span.ml-1 備忘録
 
-    .form-group
-      = f.label :title
-      = f.text_field :title, class: 'form-control'
-      - if task.errors.include?(:title)
-        p.error = task.errors.full_messages_for(:title)&.first
+        .form-group
+          = f.label :title
+          = f.text_field :title, class: 'form-control'
+          - if task.errors.include?(:title)
+            p.error = task.errors.full_messages_for(:title)&.first
 
-      /- if task.errors[:title].present?
-        p.error = task.errors[:title]&.first
+          /- if task.errors[:title].present?
+            p.error = task.errors[:title]&.first
 
-    .form-group
-      = f.label :description
-      = f.text_area :description, rows: 5, class: 'form-control', id: 'task_description'
-      - if task.errors.include?(:description)
-        p.error = task.errors.full_messages_for(:description)&.first
+        .form-group
+          = f.label :description
+          = f.text_area :description, rows: 5, class: 'form-control', id: 'task_description'
+          - if task.errors.include?(:description)
+            p.error = task.errors.full_messages_for(:description)&.first
 
-    .form-group
-      = f.label :due_date, "日時"
-      .form-inline
-        = f.date_select :due_date, {default: Date.today, use_month_numbers: true}, id: 'task_due_date'
-    
-    .form-group data-target='display.slide' 
-      = f.label :start_scheduled_time, "時間"
-      .form-inline
-        = f.datetime_select :start_scheduled_time, {include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15, discard_day: true, discard_month: true, discard_year: true}, id: 'task_start_scheduled_time'
-        h7 ~
-        = f.datetime_select :end_scheduled_time, {include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15, discard_day: true, discard_month: true, discard_year: true}, id: 'task_end_scheduled_time'
+        .form-group
+          = f.label :due_date, "日時"
+          .form-inline
+            = f.date_select :due_date, {default: Date.today, use_month_numbers: true}, id: 'task_due_date'
         
-    = f.submit nil, class: 'btn btn-primary'
+        .form-group data-target='display.slide' 
+          = f.label :start_scheduled_time, "時間"
+          .form-inline
+            = f.datetime_select :start_scheduled_time, {include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15, discard_day: true, discard_month: true, discard_year: true}, id: 'task_start_scheduled_time'
+            h7 ~
+            = f.datetime_select :end_scheduled_time, {include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15, discard_day: true, discard_month: true, discard_year: true}, id: 'task_end_scheduled_time'
+            
+        = f.submit nil, class: 'btn btn-success btn-block'

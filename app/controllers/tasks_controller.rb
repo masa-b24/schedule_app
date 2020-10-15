@@ -3,6 +3,10 @@ class TasksController < ApplicationController
 
   require'date'
 
+  def index
+    @tasks = current_user.tasks
+  end
+
   def show
     @task = Task.find(params[:id])
   end

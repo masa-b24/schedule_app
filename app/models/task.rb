@@ -5,4 +5,8 @@ class Task < ApplicationRecord
 
   belongs_to :user
   enum klass: { schedule: 0, memo: 1 }
+
+  def start_time
+    self.due_date ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
+  end
 end
