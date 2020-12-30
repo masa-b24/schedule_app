@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
 
   def forbid_login_user
     if current_user != nil
-        #flash[:notice] = "すでにログインしています"
-       redirect_to("/schedules")
+      redirect_to schedules_path
     end
   end
 
