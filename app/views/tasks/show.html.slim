@@ -3,7 +3,7 @@
     h2.text-center タスクの詳細
 
     .nav.justify-content-end
-      = link_to '一覧', schedules_path, class: 'nav-link'
+      = link_to "一覧", schedules_path, class: "nav-link"
     table.table.table-hover
       tbody
         tr
@@ -19,12 +19,11 @@
           th  時間（期間）
           td
             = l @task.start_scheduled_time, format: :time
-            span
-              |~
+            span ~
             = l @task.end_scheduled_time, format: :time
 
-    = link_to '編集', edit_task_path, class: 'btn btn-primary mr-3'
-    = link_to '削除', @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+    = link_to "編集", edit_task_path, class: "btn btn-primary mr-3"
+    = link_to "削除", @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: "btn btn-danger"
 
 
       
