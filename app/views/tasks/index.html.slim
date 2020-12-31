@@ -1,0 +1,24 @@
+.row
+  aside.col-md-3
+    section.user_info
+      - if current_user.image.attached?
+        = image_tag current_user.image.variant(resize_to_fill: [150, 150])
+      - else
+        = image_tag 'default.png'
+
+      h5 = current_user.name
+      = link_to 'ユーザー情報の編集', edit_user_registration_path
+    section.page_transition
+      .btn-group-vertical
+        = link_to 'タスク追加', new_task_path, class: 'btn btn-primary mb-3 btn-lg'
+        = link_to 'マイページ', schedules_path, class: 'btn btn-primary mb-3 btn-lg'
+        = link_to 'カレンダー', tasks_path, class: 'btn btn-primary mb-3 btn-lg'
+  .col-md-9
+    .content-area
+      = month_calendar events: @tasks do |date, tasks|
+        = date.day
+        = link_to '追加', new_task_path
+        br
+        - tasks.each do |task|
+          = link_to task.title.truncate(7), task
+          br
